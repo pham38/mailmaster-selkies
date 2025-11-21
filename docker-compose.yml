@@ -1,0 +1,18 @@
+ services:
+   mailmaster-selkies:
+     image: mailmaster:0.1    # or ghcr.io/nickrunning/wechat-selkies:latest
+     container_name: mailmaster
+     ports:
+#       - "3000:3000"       # http port
+       - "3001:3001"       # https port
+     restart: unless-stopped
+     volumes:
+       - ./config:/config
+#     devices:
+#       - /dev/dri:/dev/dri # optional, for hardware acceleration
+     environment:
+       - PUID=1000                    # user ID
+       - PGID=100                     # group ID
+       - TZ=Asia/Shanghai             # timezone
+       - LC_ALL=zh_CN.UTF-8           # locale
+       - AUTO_START_Mailmaster=true       # default is true
